@@ -11,13 +11,16 @@ import UIKit
 class ViewController: UIViewController {
     
     
-    @IBOutlet weak var orientationLabel: UILabel!
+    @IBOutlet weak var iconWeather: UIImageView!
+    
     
     let url = "https://api.openweathermap.org/data/2.5/weather?q=Almaty&id=524901&appid=95594aa6652b4aa32cd6116916fbe787"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDataFromSession()
+        
+        
     }  
    
     
@@ -31,7 +34,6 @@ class ViewController: UIViewController {
         let task = session.dataTask(with: urlAddr!) { (data, response, error) in
             
             if data != nil {
-                
                
                 do {
                     let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String, Any>
@@ -40,16 +42,11 @@ class ViewController: UIViewController {
                     let city = weatherMap.city
                     let temp = weatherMap.temperature
                     let descr = weatherMap.description
-                    
-                    print("\(city) \(temp) \(descr)")
-                    
-                    
+                             
                    
-
-                   
-                     
                     
                     
+                    //print("\(city) \(temp) \(descr)")
                 } catch {
                     print("Error serialization : \(error)")
                     
@@ -85,7 +82,7 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         if UIDevice.current.orientation.isPortrait {
-           self.orientationLabel.text = "Portrait"
+           //self.orientationLabel.text = "Portrait"
         }
     }
 
